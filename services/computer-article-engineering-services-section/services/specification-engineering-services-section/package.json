@@ -1,0 +1,25 @@
+{
+  "name": "@red-cup-engineering/specification-engineering-services-section",
+  "version": "0.1.0",
+  "description": "Fabricates Specification records from journaled rulings and semantic-record-journal rows into topic-sectioned, BCP14-clause Markdown carriers, never handwritten.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@red-cup-engineering/computer-filepath-engineering-services-section": "workspace:*",
+    "@red-cup-engineering/file-services": "workspace:*",
+    "@red-cup-engineering/json-schema-services-section": "workspace:*",
+    "@red-cup-engineering/markdown-engineering-services-section": "workspace:*",
+    "@red-cup-engineering/xml-document-rendering-service": "workspace:*",
+    "@red-cup-engineering/semiotic-eavt-services-section": "workspace:*"
+  },
+  "keywords": [
+    "engineering"
+  ],
+  "exports": {
+    "./specification-readout": "./src/specification-readout.mjs",
+    "./specification": "./src/specification.mjs",
+    "./specification-rfcxml": "./src/specification-rfcxml.mjs"
+  }
+}

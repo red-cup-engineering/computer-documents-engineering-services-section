@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "red-cup-engineering/specification",
+  "title": "specification",
+  "$comment": "A Specification is a Resource stating what is true, forbidden, and open about one thing, per the house specification format (science-services-section/.../specification-services-section/content/text/glossary/topics/specification.md). Two profiles share this envelope: 'prose' (topic sections with inline BCP 14 clauses) and 'code-work-order' (the jsnode fabrication line's Requirements/Prohibitions/Laws/Standards/Package/Operation dialect, translated elsewhere — this schema names only its section headings, never its dialect semantics).",
+  "type": "object",
+  "required": ["identity", "provenance"],
+  "additionalProperties": false,
+  "properties": {
+    "identity": { "$ref": "#/$defs/identity" },
+    "whatThisIs": { "type": "string", "minLength": 1 },
+    "topics": { "type": "array", "items": { "$ref": "#/$defs/topic" } },
+    "implementations": { "type": "array", "items": { "$ref": "#/$defs/implementation" } },
+    "openQuestions": { "type": "array", "items": { "$ref": "#/$defs/openQuestion" } },
+    "laws": { "type": "array", "items": { "$ref": "#/$defs/lawOrStandard" } },
+    "standards": { "type": "array", "items": { "$ref": "#/$defs/lawOrStandard" } },
+    "headings": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "rfc": { "$ref": "#/$defs/rfc" },
+    "provenance": { "$ref": "#/$defs/provenance" }
+  },
+  "if": {
+    "properties": { "identity": { "properties": { "profile": { "const": "code-work-order" } }, "required": ["profile"] } }
+  },
+  "then": {
+    "required": ["identity", "headings", "provenance"]
+  },
+  "else": {
+    "required": ["identity", "whatThisIs", "topics", "implementations", "openQuestions", "laws", "standards", "provenance"]
+  },
+  "$defs": {
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "seat", "carrier", "date-created", "authors", "version", "stability", "status"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "title": { "type": "string", "minLength": 1 },
+        "seat": { "type": "string", "minLength": 1 },
+        "carrier": { "type": "string", "minLength": 1 },
+        "date-created": { "type": "string", "format": "date" },
+        "authors": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
+        "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z-.]+)?(\\+[0-9A-Za-z-.]+)?$" },
+        "stability": { "enum": ["draft", "candidate", "stable", "deprecated"] },
+        "status": { "type": "string", "minLength": 1 },
+        "profile": { "enum": ["prose", "code-work-order"], "default": "prose" }
+      }
+    },
+    "topic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["heading", "body", "clauses"],
+      "properties": {
+        "heading": { "type": "string", "minLength": 1 },
+        "body": { "type": "string" },
+        "clauses": { "type": "array", "items": { "$ref": "#/$defs/clause" } }
+      }
+    },
+    "clause": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "keyword", "statement", "actor", "backedBy"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "keyword": { "enum": ["MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "MAY"] },
+        "statement": { "type": "string", "minLength": 1 },
+        "actor": { "type": "string", "minLength": 1 },
+        "backedBy": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "test": { "type": "string", "minLength": 1 }
+      }
+    },
+    "implementation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["context", "body"],
+      "properties": {
+        "context": { "type": "string", "minLength": 1 },
+        "body": { "type": "string", "minLength": 1 }
+      }
+    },
+    "openQuestion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["question", "blockedBy"],
+      "properties": {
+        "question": { "type": "string", "minLength": 1 },
+        "blockedBy": { "type": "string", "minLength": 1 }
+      }
+    },
+    "lawOrStandard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "authority", "revision", "locator", "applicability", "statement"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "authority": { "type": "string", "minLength": 1 },
+        "revision": { "type": "string", "minLength": 1 },
+        "locator": { "type": "string", "minLength": 1 },
+        "applicability": { "type": "string", "minLength": 1 },
+        "statement": { "type": "string", "minLength": 1 }
+      }
+    },
+    "rfc": {
+      "$comment": "The Internet-Draft venue of a prose Specification: what RFCXML v3 (RFC 7991) front matter and references need that the house carrier does not. Rendered by src/specification-rfcxml.mjs.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["docName", "category", "submissionType", "ipr", "abstract", "authors", "references"],
+      "properties": {
+        "docName": { "type": "string", "pattern": "^draft-[a-z0-9]+(-[a-z0-9]+)*-[0-9]{2}$" },
+        "abbrev": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "category": { "enum": ["std", "bcp", "info", "exp", "historic"] },
+        "submissionType": { "enum": ["IETF", "IAB", "IRTF", "independent"] },
+        "ipr": { "enum": ["trust200902", "noModificationTrust200902", "noDerivativesTrust200902", "pre5378Trust200902"] },
+        "consensus": { "type": "boolean" },
+        "date": { "type": "string", "format": "date" },
+        "area": { "type": "string", "minLength": 1 },
+        "workgroup": { "type": "string", "minLength": 1 },
+        "keywords": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "abstract": { "type": "string", "minLength": 1 },
+        "authors": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/rfcAuthor" } },
+        "references": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["normative", "informative"],
+          "properties": {
+            "normative": { "type": "array", "items": { "$ref": "#/$defs/rfcReference" } },
+            "informative": { "type": "array", "items": { "$ref": "#/$defs/rfcReference" } }
+          }
+        }
+      }
+    },
+    "rfcAuthor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fullname"],
+      "properties": {
+        "fullname": { "type": "string", "minLength": 1 },
+        "initials": { "type": "string", "minLength": 1 },
+        "surname": { "type": "string", "minLength": 1 },
+        "organization": { "type": "string", "minLength": 1 },
+        "email": { "type": "string", "minLength": 3 },
+        "uri": { "type": "string", "minLength": 1 }
+      }
+    },
+    "rfcReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["anchor", "title", "authors", "date"],
+      "properties": {
+        "anchor": { "type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_.-]*$" },
+        "standard": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "$comment": "The id of the record's standard this reference cites; a {{standard:id}} placeholder then renders as an xref to it." },
+        "title": { "type": "string", "minLength": 1 },
+        "target": { "type": "string", "minLength": 1 },
+        "authors": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/rfcAuthor" } },
+        "date": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "year": { "type": "string", "pattern": "^[0-9]{4}$" },
+            "month": { "type": "string", "minLength": 1 },
+            "day": { "type": "string", "pattern": "^[0-9]{1,2}$" }
+          }
+        },
+        "seriesInfo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "value"],
+            "properties": { "name": { "type": "string", "minLength": 1 }, "value": { "type": "string", "minLength": 1 } }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["derivedFrom", "derivedAt", "derivedBy"],
+      "properties": {
+        "derivedFrom": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "derivedAt": { "type": "string" },
+        "derivedBy": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
