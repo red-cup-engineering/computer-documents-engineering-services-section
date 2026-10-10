@@ -1,0 +1,20 @@
+{
+  "name": "@red-cup-engineering/note-resource-service",
+  "version": "0.1.1",
+  "private": true,
+  "type": "module",
+  "description": "Catalogs and atomically deposits typed dated note carriers beneath admitted actuator nodes.",
+  "exports": {
+    ".": "./src/note-resources.mjs",
+    "./catalog-node-notes": "./scripts/catalog-node-notes.mjs",
+    "./deposit-note-carrier": "./scripts/deposit-note-carrier.mjs"
+  },
+  "scripts": {
+    "check": "node --check src/note-resources.mjs",
+    "test": "node --test test/*.test.mjs",
+    "verify": "npm run check && npm test"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@red-cup-engineering/computer-article-engineering-services-section",
+  "version": "0.1.1",
+  "type": "module",
+  "description": "Restricts document carriers to sustained prose claims with explicit disposition.",
+  "x-capability-recovery": [
+    {
+      "capability": "article-preparation-and-topic-proof-paths",
+      "source": "@red-cup-engineering/organizing-a-knowledge-vault"
+    }
+  ],
+  "exports": {
+    "./article-content-path-grammar": "./scripts/article-content-path-grammar.mjs",
+    "./article": "./scripts/article.mjs",
+    "./page": "./scripts/page.mjs",
+    "./publication-date": "./scripts/publication-date.mjs"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@red-cup-engineering/metrologic": "workspace:*",
+    "@red-cup-engineering/computer-data-engineering-services-section": "workspace:*",
+    "@red-cup-engineering/json-schema-services-section": "workspace:*"
+  }
+}
