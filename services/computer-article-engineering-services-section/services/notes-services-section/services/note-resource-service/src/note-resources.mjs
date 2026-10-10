@@ -16,7 +16,7 @@ export const NOTE_RESOURCE_CATALOG = Object.freeze({
     "@red-cup-engineering/typed-resource-catalog",
     "@red-cup-engineering/markdown-file-reading-service",
     "@red-cup-engineering/markdown-file-writing-service",
-    "@red-cup-engineering/semantic-content-identify-service",
+    "@red-cup-engineering/computer-content-engineering-services-section/semantic-content-identity",
     "@red-cup-engineering/immutable-content-custody-service",
     "@red-cup-engineering/organizing-a-knowledge-vault",
     "@red-cup-engineering/standards-conformance-services-section",
