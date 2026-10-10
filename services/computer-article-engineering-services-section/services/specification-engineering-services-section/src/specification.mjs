@@ -1,8 +1,8 @@
 import { confinePath } from "@red-cup-engineering/computer-filepath-engineering-services-section/filepath";
-import { readFileText } from "@red-cup-engineering/file-services/read-file";
+import { readFileText } from "@red-cup-engineering/computer-file-engineering-services-section/read-file";
 import { fileURLToPath as projectFileUrlFilepath } from "node:url";
 import { relativeLinkPath } from "@red-cup-engineering/markdown-engineering-services-section/relocate-markdown-tree";
-import { statPath } from "@red-cup-engineering/file-services/stat-path";
+import { statPath } from "@red-cup-engineering/computer-file-engineering-services-section/stat-path";
 import { validateJsonSchema } from "@red-cup-engineering/json-schema-services-section/validation";
 
 const SCHEMA_PATH = projectFileUrlFilepath(new URL("../data/records/schema/specification.schema.json", import.meta.url).href);

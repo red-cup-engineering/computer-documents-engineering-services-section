@@ -3,7 +3,7 @@ import { mkdirSync, mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
-import { writeFileText } from "@red-cup-engineering/file-services/write-file";
+import { writeFileText } from "@red-cup-engineering/computer-file-engineering-services-section/write-file";
 import { censusSpecifications } from "../scripts/census-specification.mjs";
 
 test("censusSpecifications finds a handwritten carrier with no companion record", async () => {

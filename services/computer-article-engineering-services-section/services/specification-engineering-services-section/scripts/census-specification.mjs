@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import { readFileText } from "@red-cup-engineering/file-services/read-file";
+import { readFileText } from "@red-cup-engineering/computer-file-engineering-services-section/read-file";
 import { walkPosixPaths } from "@red-cup-engineering/computer-filepath-engineering-services-section/walk-posix-paths";
-import { statPath } from "@red-cup-engineering/file-services/stat-path";
+import { statPath } from "@red-cup-engineering/computer-file-engineering-services-section/stat-path";
 import { countNormativeKeywords } from "../src/specification.mjs";
 
 const EXCLUDED_DIRECTORY_NAMES = ["node_modules", "lib", ".git"];

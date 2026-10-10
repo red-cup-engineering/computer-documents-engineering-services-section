@@ -3,8 +3,8 @@ import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
-import { readFileText } from "@red-cup-engineering/file-services/read-file";
-import { writeFileText } from "@red-cup-engineering/file-services/write-file";
+import { readFileText } from "@red-cup-engineering/computer-file-engineering-services-section/read-file";
+import { writeFileText } from "@red-cup-engineering/computer-file-engineering-services-section/write-file";
 import { makeSpecification } from "../scripts/make-specification.mjs";
 import { updateSpecification } from "../scripts/update-specification.mjs";
 

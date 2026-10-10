@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import { readFileText } from "@red-cup-engineering/file-services/read-file";
-import { writeFileText } from "@red-cup-engineering/file-services/write-file";
-import { statPath } from "@red-cup-engineering/file-services/stat-path";
+import { readFileText } from "@red-cup-engineering/computer-file-engineering-services-section/read-file";
+import { writeFileText } from "@red-cup-engineering/computer-file-engineering-services-section/write-file";
+import { statPath } from "@red-cup-engineering/computer-file-engineering-services-section/stat-path";
 import { renderSpecificationMarkdown, repoRootFromDestination, validateSpecificationRecord, verifyCitationTargetsExist } from "../src/specification.mjs";
 
 /**
