@@ -24,7 +24,7 @@
     "verify": "npm run check && npm test"
   },
   "dependencies": {
-    "@red-cup-engineering/markdown-engineering-services-section": "0.5.0"
+    "@red-cup-engineering/markdown-engineering-services-section": "workspace:*"
   },
   "engines": {
     "node": ">=20"
