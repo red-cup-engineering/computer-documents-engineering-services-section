@@ -1,0 +1,39 @@
+{
+  "title": "Issue Title",
+  "dek": "A short deck line.",
+  "sections": [
+    {
+      "heading": "First Section",
+      "body-markdown": "This is **bold** and this is *em* text with a [link](https://example.com/a).\n\n> A blockquote line.",
+      "sources": ["smith2023"]
+    },
+    {
+      "heading": "Second Section",
+      "body-markdown": "### A subheading\n\nSecond paragraph here.",
+      "sources": ["jones2024", "smith2023"]
+    }
+  ],
+  "references": {
+    "smith2023": {
+      "id": "smith2023",
+      "type": "article-journal",
+      "title": "A study of things",
+      "author": [{ "given": "Ada", "family": "Smith" }],
+      "container-title": "Journal of Things",
+      "volume": "12",
+      "issue": "3",
+      "page": "45-67",
+      "issued": { "date-parts": [[2023, 5]] },
+      "DOI": "10.1234/abcd.5678",
+      "URL": "https://example.com/smith2023"
+    },
+    "jones2024": {
+      "id": "jones2024",
+      "type": "report",
+      "title": "A report on stuff",
+      "author": [{ "literal": "Jones Institute" }],
+      "issued": { "date-parts": [[2024]] },
+      "URL": "https://example.com/jones2024"
+    }
+  }
+}
