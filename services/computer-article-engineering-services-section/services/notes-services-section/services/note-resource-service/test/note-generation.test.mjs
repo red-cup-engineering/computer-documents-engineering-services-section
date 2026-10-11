@@ -95,11 +95,23 @@ for (const [name, authored, extra, pattern] of [
   assert.equal((await catalogNodeNotes({ nodeRoot: root })).resourceCount, 0);
 }));
 
-test("unsupported top-level null metadata refuses before an existing note can change", () => inRoot(async (root) => {
+test("explicit preservation carries authored top-level null through replacement", () => inRoot(async (root) => {
+  const before = await depositNoteCarrier(input(root));
+  const raw = `---\ntitle: A bounded source repair\ndescription: ${facets.description}\ntags: [engineering]\noptional: null\n---\nOriginal text.\n`;
+  const after = await depositNoteCarrier(input(root, { mode: "replace", frontmatter: undefined, carrier: { content: raw } }));
+  assert.equal(after.disposition, "replaced");
+  assert.equal(after.path, before.path);
+  assert.equal(after.sourceResource, sha(raw));
+  const projected = await read(root, after);
+  assert.equal(Object.hasOwn(projected.frontmatter, "optional"), true);
+  assert.equal(projected.frontmatter.optional, null);
+  assert.equal(projected.body, "Original text.\n");
+}));
+
+test("the equality guard still refuses other codec loss before replacing an existing note", () => inRoot(async (root) => {
   const before = await depositNoteCarrier(input(root));
   const bytes = await readFile(join(root, before.path));
-  const raw = `---\ntitle: A bounded source repair\ndescription: ${facets.description}\ntags: [engineering]\noptional: null\n---\nOriginal text.\n`;
-  await assert.rejects(() => depositNoteCarrier(input(root, { mode: "replace", frontmatter: undefined, carrier: { content: raw } })), /cannot preserve all authored frontmatter/);
+  await assert.rejects(() => depositNoteCarrier(input(root, { mode: "replace", frontmatter: { ...facets, emptyRecord: {} } })), /cannot preserve all authored frontmatter/);
   assert.deepEqual(await readFile(join(root, before.path)), bytes);
 }));
 
@@ -168,14 +180,17 @@ test("strict admission refuses a top-level Date metadata object", () => inRoot(a
   assert.equal((await catalogNodeNotes({ nodeRoot: root })).resourceCount, 0);
 }));
 
-test("own __proto__ metadata loss is refused without prototype pollution", () => inRoot(async (root) => {
+test("own __proto__ metadata is retained without prototype pollution", () => inRoot(async (root) => {
   const supplied = JSON.parse('{"__proto__":{"notePollutionSentinel":"authored"}}');
   const before = Object.getPrototypeOf(supplied);
-  await assert.rejects(() => depositNoteCarrier(input(root, { frontmatter: { ...facets, ...supplied } })), /cannot preserve all authored frontmatter/);
+  const receipt = await depositNoteCarrier(input(root, { frontmatter: { ...facets, ...supplied } }));
+  const projected = (await read(root, receipt)).frontmatter;
+  assert.equal(Object.hasOwn(projected, "__proto__"), true);
+  assert.deepEqual(projected.__proto__, supplied.__proto__);
   assert.equal(Object.getPrototypeOf(supplied), before);
+  assert.equal(Object.getPrototypeOf(projected), Object.prototype);
   assert.equal(Object.prototype.notePollutionSentinel, undefined);
   assert.equal(Object.hasOwn(supplied, "__proto__"), true);
-  assert.equal((await catalogNodeNotes({ nodeRoot: root })).resourceCount, 0);
 }));
 
 test("strict JSON admission refuses accessor metadata without evaluating it", () => inRoot(async (root) => {

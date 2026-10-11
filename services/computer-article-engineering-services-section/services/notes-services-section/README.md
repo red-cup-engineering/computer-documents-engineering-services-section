@@ -24,14 +24,14 @@ the optional `frontmatter` object. The existing note conformance requires
 The filing date must agree with the authored creation date's day; a timestamp
 is retained in full. Authorship, dates, references and other supplied fields
 are retained. Conflicting supplied fields or a lossy codec round trip refuse
-before writing. In particular, the current creator omits top-level null values,
-so such metadata is refused rather than silently discarded.
+before writing. Deposits explicitly select the shared creator's null-preservation
+policy so authored null fields remain present.
 Decoded and supplied metadata are admitted through the existing JSON
 provider's bounded resource envelope before comparison or generation. Runtime
 Date objects, undefined fields, non-finite numbers, cycles and accessor
 properties are refused. The preservation claim covers admitted JSON values;
-the YAML reader separately refuses non-JSON YAML values. An own top-level
-`__proto__` field that the current creator cannot carry is also refused.
+the YAML reader separately refuses non-JSON YAML values. Own `__proto__` fields
+are retained as ordinary metadata without changing object prototypes.
 
 `carrier.sha256`, when supplied, covers the exact incoming UTF-8 bytes. The
 receipt distinguishes this source witness from the normalized output identity

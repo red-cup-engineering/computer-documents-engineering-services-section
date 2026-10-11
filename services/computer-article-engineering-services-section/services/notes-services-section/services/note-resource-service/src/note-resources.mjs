@@ -103,7 +103,7 @@ function noteText(input) {
   // Reserve only a synthetic body key absent from the authored metadata.
   let bodyKey = "__note_body";
   while (Object.hasOwn(frontmatter, bodyKey)) bodyKey += "_";
-  const content = createMarkdownDocument(frontmatter, { body: parsed.body, bodyKey });
+  const content = createMarkdownDocument(frontmatter, { body: parsed.body, bodyKey, nullFrontmatter: "preserve" });
   const roundTrip = readMarkdownFrontmatter(content);
   if (canonicalJson(roundTrip.frontmatter) !== canonicalJson(frontmatter)) throw new TypeError("Markdown generation cannot preserve all authored frontmatter fields");
   // Authorship is retained; generic validator policy must not erase it.
