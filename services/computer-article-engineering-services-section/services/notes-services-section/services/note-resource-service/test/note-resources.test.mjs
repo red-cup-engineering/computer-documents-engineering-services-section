@@ -6,6 +6,8 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { catalogNodeNotes, depositNoteCarrier, NOTE_PROOF_PATH, NOTE_RESOURCE_CATALOG } from "../src/note-resources.mjs";
 
+const frontmatter = { description: "A provider-backed claim with its source identity and catalog receipt.", tags: ["engineering"] };
+
 const sha = (value) => `sha256:${createHash("sha256").update(value).digest("hex")}`;
 
 test("declares the full typed restriction chain and recovered capability imports", () => {
@@ -18,13 +20,13 @@ test("deposits and catalogs one typed dated note", async () => {
   const root = await mkdtemp(join(tmpdir(), "note-resource-"));
   try {
     const body = "A provider claim with citations.";
-    const deposited = await depositNoteCarrier({ nodeRoot: root, date: "2026-07-29", title: "A Report", carrier: { content: body, sha256: sha(body) }, source: { provider: "notebooklm", notebookId: "nb-1", artifactId: "report-1" } });
+    const deposited = await depositNoteCarrier({ nodeRoot: root, frontmatter, date: "2026-07-29", title: "A Report", carrier: { content: body, sha256: sha(body) }, source: { provider: "notebooklm", notebookId: "nb-1", artifactId: "report-1" } });
     assert.equal(deposited.disposition, "created");
     assert.equal(deposited.sourceResource, sha(body));
     assert.deepEqual(deposited.proofPath, NOTE_PROOF_PATH);
     const text = await readFile(join(root, deposited.path), "utf8");
     assert.match(text, /status: research/u);
-    assert.match(text, /source-artifactId: "report-1"/u);
+    assert.match(text, /source-artifactId: report-1/u);
     const catalog = await catalogNodeNotes({ nodeRoot: root });
     assert.equal(catalog.resourceCount, 1);
     assert.equal(catalog.resources[0].path, deposited.path);
@@ -35,7 +37,7 @@ test("deposits and catalogs one typed dated note", async () => {
 test("is idempotent for exact bytes and refuses digest mismatch", async () => {
   const root = await mkdtemp(join(tmpdir(), "note-resource-"));
   try {
-    const input = { nodeRoot: root, date: "2026-07-29", title: "Same", carrier: { content: "same" }, mode: "upsert" };
+    const input = { nodeRoot: root, frontmatter, date: "2026-07-29", title: "Same", carrier: { content: "same" }, mode: "upsert" };
     assert.equal((await depositNoteCarrier(input)).disposition, "created");
     assert.equal((await depositNoteCarrier(input)).disposition, "already-present");
     await assert.rejects(() => depositNoteCarrier({ ...input, title: "Bad", carrier: { content: "same", sha256: sha("different") } }), /do not match/u);
@@ -45,8 +47,8 @@ test("is idempotent for exact bytes and refuses digest mismatch", async () => {
 test("equal source bytes at different proof paths are distinct resources", async () => {
   const root = await mkdtemp(join(tmpdir(), "note-resource-"));
   try {
-    const left = await depositNoteCarrier({ nodeRoot: root, date: "2026-07-29", title: "Left", carrier: { content: "same" } });
-    const right = await depositNoteCarrier({ nodeRoot: root, date: "2026-07-29", title: "Right", carrier: { content: "same" } });
+    const left = await depositNoteCarrier({ nodeRoot: root, frontmatter, date: "2026-07-29", title: "Left", carrier: { content: "same" } });
+    const right = await depositNoteCarrier({ nodeRoot: root, frontmatter, date: "2026-07-29", title: "Right", carrier: { content: "same" } });
     assert.notEqual(left.path, right.path);
     assert.notEqual(left.resource, right.resource);
     assert.equal(left.sourceResource, right.sourceResource);
@@ -57,8 +59,8 @@ test("catalog does not follow symlinks outside the actuator node", async () => {
   const root = await mkdtemp(join(tmpdir(), "note-resource-"));
   const outside = await mkdtemp(join(tmpdir(), "note-resource-outside-"));
   try {
-    await depositNoteCarrier({ nodeRoot: root, date: "2026-07-29", title: "Inside", carrier: { content: "inside" } });
-    await symlink(outside, join(root, "content/documents/articles/notes/2026/07/29/outside"));
+    await depositNoteCarrier({ nodeRoot: root, frontmatter, date: "2026-07-29", title: "Inside", carrier: { content: "inside" } });
+    await symlink(outside, join(root, "content/text/documents/articles/notes/2026/07/29/outside"));
     assert.equal((await catalogNodeNotes({ nodeRoot: root })).resourceCount, 1);
   } finally { await rm(root, { recursive: true, force: true }); await rm(outside, { recursive: true, force: true }); }
 });
