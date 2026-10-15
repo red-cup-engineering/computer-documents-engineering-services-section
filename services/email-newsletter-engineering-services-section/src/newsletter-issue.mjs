@@ -1,5 +1,5 @@
 import { renderMarkdownInlineHtml } from "@red-cup-engineering/markdown-engineering-services-section/render-markdown-inline-html";
-import { readMarkdownSource, projectMarkdownStructure } from "@red-cup-engineering/markdown-engineering-services-section/read-markdown-structure";
+import { readMarkdownSource, projectMarkdownStructure } from "@red-cup-engineering/read-markdown-structure-service";
 /**
  * @module newsletter-issue
  * Platform-neutral newsletter-issue semantics: an issue is `{title, dek,

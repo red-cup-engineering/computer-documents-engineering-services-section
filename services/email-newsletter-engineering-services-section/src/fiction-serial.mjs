@@ -1,4 +1,4 @@
-import { readMarkdownFrontmatter } from "@red-cup-engineering/markdown-engineering-services-section/read-markdown-frontmatter";
+import { readMarkdownFrontmatter } from "@red-cup-engineering/read-markdown-frontmatter-service";
 
 function record(value) {
   return value !== null && typeof value === "object" && !Array.isArray(value);

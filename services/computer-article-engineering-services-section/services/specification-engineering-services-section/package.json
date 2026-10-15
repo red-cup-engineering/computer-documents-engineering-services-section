@@ -12,7 +12,8 @@
     "@red-cup-engineering/json-schema-services-section": "workspace:*",
     "@red-cup-engineering/markdown-engineering-services-section": "workspace:*",
     "@red-cup-engineering/xml-document-rendering-service": "workspace:*",
-    "@red-cup-engineering/semiotic-eavt-services-section": "workspace:*"
+    "@red-cup-engineering/semiotic-eavt-services-section": "workspace:*",
+    "@red-cup-engineering/read-markdown-structure-service": "0.2.0"
   },
   "keywords": [
     "engineering"

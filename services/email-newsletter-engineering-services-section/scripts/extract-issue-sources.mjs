@@ -7,7 +7,7 @@
  */
 
 import { readFileSync } from "node:fs";
-import { readMarkdownFrontmatter } from "@red-cup-engineering/markdown-engineering-services-section/read-markdown-frontmatter";
+import { readMarkdownFrontmatter } from "@red-cup-engineering/read-markdown-frontmatter-service";
 
 /**
  * Harvest one carrier's frontmatter `references` block into a

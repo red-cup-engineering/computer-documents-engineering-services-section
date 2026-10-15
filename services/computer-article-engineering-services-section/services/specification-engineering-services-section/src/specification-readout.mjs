@@ -1,6 +1,6 @@
 /** BCP 14 normative-requirement reading for Markdown specifications. */
 import { addressTextDocument, artifactId } from "@red-cup-engineering/semiotic-eavt-services-section/identity";
-import { readMarkdownStructure } from "@red-cup-engineering/markdown-engineering-services-section/read-markdown-structure";
+import { readMarkdownStructure } from "@red-cup-engineering/read-markdown-structure-service";
 import { document, element } from "@red-cup-engineering/xml-document-rendering-service/core";
 
 export const BCP14_KEYWORDS = Object.freeze([
