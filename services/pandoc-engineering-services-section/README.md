@@ -22,6 +22,10 @@ Pandoc's own vocabulary, and notes about how it behaves.
   — converts an Org document to Markdown under a fixed invocation contract,
   carrying org-roam node identity forward and dropping org-drill review state.
 
+### Recovered book-source projection (local artifacts only)
+
+The original local Pandoc `publish-book` command from [emsenn/2025-12-19-pandoc-publishing](https://github.com/emsenn/2025-12-19-pandoc-publishing) and the code archive is received **inside the existing** [project-document-through-pandoc-service](services/project-document-through-pandoc-service/), not as another book publisher or GitHub workflow. Its original byte-identical executable was selected first (archive blob `bee61615b088452ea9c34a9bd5f67c01b4a00f73`, first receiving source commit `edc21f1964a47c72f5f585e03f88e718d7ed24cc`); the current leaf then tightens output staging and argument refusal. The CLI preserves direct `--source/--outdir/--basename` and historical `--repo/--outroot` semantics and produces local HTML and PDF with `build.log` through a supplied Pandoc binary. CLI regression examples use an isolated fake Pandoc; they must be executed and qualified separately. This is **fabrication**, not an online release, independently received customer publication, reproducible paper release, or formal-math proof qualification. The original paper-workflow demand remains in [source Issue #1](https://github.com/emsenn/2025-12-19-pandoc-publishing/issues/1); its unpinned reusable GitHub Actions workflow was not activated in the current production CI.
+
 ## What this section does not own
 
 Pandoc is an external program. This section owns the *contract* under which the
