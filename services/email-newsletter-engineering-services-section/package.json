@@ -1,6 +1,6 @@
 {
   "name": "@red-cup-engineering/email-newsletter-engineering-services-section",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Platform-neutral newsletter-issue fabrication: validates a CSL-JSON-cited issue and renders it to clean Markdown, paste-ready HTML (Substack-paste-safe: h2/h3/p/blockquote/a/strong/em only), and an RSS/Atom item fragment.",
   "license": "UNLICENSED",
@@ -26,7 +26,7 @@
   "dependencies": {
     "@red-cup-engineering/read-markdown-frontmatter-service": "0.2.0",
     "@red-cup-engineering/read-markdown-structure-service": "0.2.0",
-    "@red-cup-engineering/markdown-engineering-services-section": "0.5.1"
+    "@red-cup-engineering/markdown-engineering-services-section": "0.5.2"
   },
   "engines": {
     "node": ">=20"
