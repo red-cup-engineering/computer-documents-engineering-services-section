@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "type": "module",
   "description": "Restricts articles to dated research notes deposited beneath admitted actuator nodes.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/red-cup-engineering/computer-content-engineering-services-section.git",
+    "directory": "services/computer-documents-engineering-services-section/services/computer-article-engineering-services-section/services/notes-services-section"
+  },
   "x-capability-recovery": [
     {
       "capability": "typed-note-catalog-and-deposit",

@@ -3,6 +3,11 @@
   "version": "0.1.1",
   "type": "module",
   "description": "Platform-neutral newsletter-issue fabrication: validates a CSL-JSON-cited issue and renders it to clean Markdown, paste-ready HTML (Substack-paste-safe: h2/h3/p/blockquote/a/strong/em only), and an RSS/Atom item fragment.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/red-cup-engineering/computer-content-engineering-services-section.git",
+    "directory": "services/computer-documents-engineering-services-section/services/email-newsletter-engineering-services-section"
+  },
   "license": "UNLICENSED",
   "exports": {
     ".": "./src/newsletter-issue.mjs",
