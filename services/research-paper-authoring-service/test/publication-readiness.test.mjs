@@ -1,0 +1,17 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {assessResearchPublicationReadiness as check} from "../src/publication-readiness.mjs";
+const H="a".repeat(64),U="https://example.org/archive/v0.1.0";
+const candidate=()=>({kind:"lenticule.research-publication.v1",title:"Paper",version:"0.1.0",status:"release-candidate",discipline:"historical sociology",publishing_organization:"Lenticule Science",authors:[{name:"Morgan Sennhauser",role:"accountable-human-author"},{name:"Codex 6.1",role:"AI collaborator"}],ai_disclosure:"AI assistant Codex disclosed",evidence:{claim:"conjecture not demonstrated"},files:{"paper.pdf":{sha256:H,bytes:10}},source_manuscripts:["https://example.org/source.md"],doi:null});
+const receipt=[{path:"paper.pdf",sha256:H,bytes:10,verified:true}];
+const published=()=>({...candidate(),status:"published",canonical_public_url:U,released_at:"2026-10-18T00:00:00Z"});
+const publicReceipt={verified:true,publicUrl:U,version:"0.1.0",observedAt:"2026-10-18T01:00:00Z",manifestSha256:"b".repeat(64)};
+test("candidate metadata cannot constitute a public release",()=>assert.equal(check({manifest:candidate()}).status,"metadata-ready-artifacts-unverified"));
+test("byte receipts without release remain unpublished",()=>assert.equal(check({manifest:candidate(),artifactReceipts:receipt}).status,"reproducible-candidate-not-public"));
+test("the word published cannot fabricate public receiving",()=>assert.equal(check({manifest:published(),artifactReceipts:receipt}).flags.publiclyCitable,false));
+test("an independently observed versioned release can be cited without a DOI",()=>{const r=check({manifest:published(),artifactReceipts:receipt,publicReceipt});assert.equal(r.status,"public-release-received");assert.equal(r.doi,null)});
+test("DOI requires matching independent registration evidence",()=>{const m=published();m.doi="10.5281/zenodo.123456";const a=check({manifest:m,artifactReceipts:receipt,publicReceipt});assert.equal(a.flags.doiReceived,false);const b=check({manifest:m,artifactReceipts:receipt,publicReceipt,doiReceipt:{verified:true,doi:m.doi,version:m.version,publicUrl:U}});assert.equal(b.status,"doi-received")});
+test("AI disclosure and accountable human are mandatory",()=>{const m=candidate();delete m.ai_disclosure;assert.ok(check({manifest:m}).failures.includes("ai-contribution-disclosure"));m.ai_disclosure="AI disclosed";m.authors=[m.authors[1]];assert.ok(check({manifest:m}).failures.includes("human-accountability"))});
+test("a mismatched artifact digest refuses public status",()=>{const r=check({manifest:published(),artifactReceipts:[{...receipt[0],sha256:"c".repeat(64)}],publicReceipt});assert.equal(r.flags.releaseReceived,false)});
+test("unsafe paths and nonpublic source pointers fail",()=>{const m=candidate();m.files={"../escape.pdf":{sha256:H,bytes:1}};m.source_manuscripts=["http://localhost/source"];const r=check({manifest:m});assert.ok(r.failures.includes("declared-artifacts"));assert.ok(r.failures.includes("source-locators"))});
+test("empty input fails",()=>assert.equal(check().status,"invalid-candidate"));
