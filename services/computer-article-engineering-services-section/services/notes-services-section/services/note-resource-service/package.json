@@ -4,6 +4,11 @@
   "private": true,
   "type": "module",
   "description": "Catalogs and atomically deposits typed dated note carriers beneath admitted actuator nodes.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/red-cup-engineering/computer-content-engineering-services-section.git",
+    "directory": "services/computer-documents-engineering-services-section/services/computer-article-engineering-services-section/services/notes-services-section/services/note-resource-service"
+  },
   "exports": {
     ".": "./src/note-resources.mjs",
     "./catalog-node-notes": "./scripts/catalog-node-notes.mjs",
