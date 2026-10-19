@@ -1,0 +1,24 @@
+[submodule "research-paper-authoring-service"]
+	path = services/research-paper-authoring-service
+	url = https://github.com/red-cup-engineering/research-paper-authoring-service.git
+	branch = main
+[submodule "research-document-metadata-admission-service"]
+	path = services/research-document-metadata-admission-service
+	url = https://github.com/red-cup-engineering/research-document-metadata-admission-service.git
+	branch = main
+[submodule "pandoc-engineering-services-section"]
+	path = services/pandoc-engineering-services-section
+	url = https://github.com/red-cup-engineering/pandoc-engineering-services-section.git
+	branch = main
+[submodule "email-newsletter-engineering-services-section"]
+	path = services/email-newsletter-engineering-services-section
+	url = https://github.com/red-cup-engineering/email-newsletter-engineering-services-section.git
+	branch = main
+[submodule "ebook-engineering-services-section"]
+	path = services/ebook-engineering-services-section
+	url = https://github.com/red-cup-engineering/ebook-engineering-services-section.git
+	branch = main
+[submodule "computer-article-engineering-services-section"]
+	path = services/computer-article-engineering-services-section
+	url = https://github.com/red-cup-engineering/computer-article-engineering-services-section.git
+	branch = main
