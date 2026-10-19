@@ -1,7 +1,0 @@
-{
-  "name": "@red-cup-engineering/pandoc-engineering-services-section",
-  "version": "0.1.0",
-  "type": "module",
-  "description": "Document codec conversion through Pandoc; the invocation contract, not the program.",
-  "license": "UNLICENSED"
-}
