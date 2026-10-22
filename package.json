@@ -1,8 +1,8 @@
 {
   "name": "@red-cup-engineering/computer-documents-engineering-services-section",
-  "version": "0.1.0",
+  "version": "0.2.0-dev.0",
   "type": "module",
-  "description": "Restricts content carriers to decoded documents with exact attributable and assay evidence.",
+  "description": "Source-qualified document planning, drafting, structural reviewing, and nonpublishing editorial receipts.",
   "x-capability-recovery": [
     {
       "capability": "frontmatter-body-assertion-document-codec",
@@ -21,5 +21,26 @@
   "funding": {
     "type": "individual",
     "url": "https://github.com/561-group/.github/blob/main/TIPS.md"
+  },
+  "exports": {
+    "./editorial-production": "./src/editorial-production.mjs",
+    "./editorial-outline": "./src/editorial-outline.mjs",
+    "./editorial-cli": "./src/editorial-cli.mjs"
+  },
+  "bin": {
+    "editorial-produce": "./src/editorial-cli.mjs"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "check": "node --check src/editorial-production.mjs && node --check src/editorial-outline.mjs && node --check src/editorial-cli.mjs"
+  },
+  "files": [
+    "README.md",
+    "src",
+    "data/records",
+    "examples"
+  ],
+  "engines": {
+    "node": ">=22.16.0"
   }
 }
