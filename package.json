@@ -1,6 +1,6 @@
 {
   "name": "@red-cup-engineering/computer-documents-engineering-services-section",
-  "version": "0.2.0-dev.0",
+  "version": "0.2.0-dev.1",
   "type": "module",
   "description": "Source-qualified document planning, drafting, structural reviewing, and nonpublishing editorial receipts.",
   "x-capability-recovery": [
@@ -25,14 +25,15 @@
   "exports": {
     "./editorial-production": "./src/editorial-production.mjs",
     "./editorial-outline": "./src/editorial-outline.mjs",
-    "./editorial-cli": "./src/editorial-cli.mjs"
+    "./editorial-cli": "./src/editorial-cli.mjs",
+    "./editorial-revision": "./src/editorial-revision.mjs"
   },
   "bin": {
     "editorial-produce": "./src/editorial-cli.mjs"
   },
   "scripts": {
     "test": "node --test test/*.test.mjs",
-    "check": "node --check src/editorial-production.mjs && node --check src/editorial-outline.mjs && node --check src/editorial-cli.mjs"
+    "check": "node --check src/editorial-production.mjs && node --check src/editorial-outline.mjs && node --check src/editorial-cli.mjs && node --check src/editorial-revision.mjs"
   },
   "files": [
     "README.md",
