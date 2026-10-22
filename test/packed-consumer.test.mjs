@@ -29,6 +29,7 @@ test('npm-packed source installs offline and actual consumer drafts and reviews 
     import {readFileSync} from 'node:fs';
     import {planEditorialCommission,runEditorialProduction} from '${pkg}/editorial-production';
     import {proposeOutlineAssignments} from '${pkg}/editorial-outline';
+    import {stageReviewedManuscript} from '${pkg}/editorial-revision';
     const commission=JSON.parse(readFileSync('commission.json','utf8'));
     const plan=planEditorialCommission(commission);
     assert.ok(plan.sections.length>=3);
@@ -39,6 +40,10 @@ test('npm-packed source installs offline and actual consumer drafts and reviews 
     assert.equal(report.review.issues.length,0);
     assert.match(report.manuscript.text,/source:grammarly/);
     assert.ok(report.manuscript.text.includes('## Sources'));
+    const staged=await stageReviewedManuscript({commission,original:report,
+      receiveReviewedSection:async()=>null,verifyStage:()=>true});
+    assert.equal(staged.manuscript.text,report.manuscript.text);
+    assert.equal(staged.publicationAuthority,'none');
   `);
   command(process.execPath,['smoke.mjs'],consumer);
   const installedRoot=join(consumer,'node_modules',...pkg.split('/'));
