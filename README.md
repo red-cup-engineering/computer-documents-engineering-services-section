@@ -25,6 +25,15 @@ with content/file services and standards acceptance remains independent.
 - [`research-document-metadata-admission-service`](services/research-document-metadata-admission-service/)
   — admits decoded research-document metadata and projects its declared
   document relations without coupling a Markdown carrier to a database or API.
+- [`research-claim-reproduction-service`](services/research-claim-reproduction-service/)
+  — exact-decimal reproduction of a paper's quantitative claims and derived
+  tables from a JSON claim-spec.
+- [`research-release-metadata-service`](services/research-release-metadata-service/)
+  — projects a paper's `paper.yaml` into CITATION.cff, .zenodo.json, codemeta
+  and ScholarlyArticle JSON-LD, with AI-collaborator disclosure and a drift check.
+- [`chart-specification-rendering-service`](services/chart-specification-rendering-service/)
+  — deterministic Vega-Lite v5 to SVG chart rendering: figures as data,
+  byte-reproducible output.
 - `services/research-source-packet-admission-service/lib/legacy/2026-03-11-research-math-tools/` — independently authored research-corpus and research-program tools. YouTube research packets now live with their channels in `youtube/channels/`.
 - `services/medical-glossary-delivery-service/` — searches and delivers the
   medical glossary projected from its scientific source corpus.
