@@ -22,3 +22,15 @@
 	path = services/computer-article-engineering-services-section
 	url = https://github.com/red-cup-engineering/computer-article-engineering-services-section.git
 	branch = main
+[submodule "services/research-claim-reproduction-service"]
+	path = services/research-claim-reproduction-service
+	url = https://github.com/red-cup-engineering/research-claim-reproduction-service.git
+	branch = main
+[submodule "services/research-release-metadata-service"]
+	path = services/research-release-metadata-service
+	url = https://github.com/red-cup-engineering/research-release-metadata-service.git
+	branch = main
+[submodule "services/chart-specification-rendering-service"]
+	path = services/chart-specification-rendering-service
+	url = https://github.com/red-cup-engineering/chart-specification-rendering-service.git
+	branch = main
