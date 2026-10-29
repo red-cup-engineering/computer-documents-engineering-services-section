@@ -1,0 +1,13 @@
+{
+  "type": "CuriosityResearchMarketProviderBinding",
+  "status": "active",
+  "customer": "urn:ame:relational-orientation-research-desk",
+  "provider": "urn:ame:curiosity-research-market-enterprise",
+  "purpose": "research-packet-production",
+  "agentUrl": "http://127.0.0.1:18441/.well-known/agent-card.json",
+  "agentCardIdentity": "ni:///sha-256;WkdtgBCjvSrB55ayPZt3NtTsv0_5MM6Y3ppGq0QVso0",
+  "agentCardSignature": "ni:///sha-256;qMu5Zy6SQImHiWGIgQoOKx_nP1PrjNxttsVr7ckZd3Q",
+  "contract": "ni:///sha-256;WPZuOUwiR9VUT_ZPZJvtcidIjbYQfwvNfdxOI_feII4",
+  "authorityWithheld": ["ambient-award-list", "assignment", "offer", "settlement", "research", "source-truth", "transformation", "publication", "market-write"],
+  "boundAt": "2026-07-22T02:23:41.000Z"
+}

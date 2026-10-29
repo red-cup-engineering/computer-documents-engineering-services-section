@@ -1,0 +1,70 @@
+{
+  "type": "RelationalResearchPlan",
+  "version": 1,
+  "question": "Who pays, who decides, and what changes when AI data centers connect to local electricity grids?",
+  "askMicros": 350000,
+  "accountingUnit": "USD-micros",
+  "citations": [
+    {
+      "id": "doe-2024-data-center-demand",
+      "url": "https://www.energy.gov/articles/doe-releases-new-report-evaluating-increase-electricity-demand-data-centers",
+      "title": "DOE Releases New Report Evaluating Increase in Electricity Demand from Data Centers",
+      "publisher": "U.S. Department of Energy",
+      "rights": "US-GOV-PUBLIC-DOMAIN",
+      "rightsEvidenceUrl": "https://www.usa.gov/government-copyright",
+      "rightsEvidenceNeedle": "Government work is something created by a U.S. government officer or employee as part of their official duties.",
+      "retrievedAt": "2026-07-22T09:00:00.000Z"
+    },
+    {
+      "id": "eia-2026-high-data-center-demand",
+      "url": "https://www.eia.gov/todayinenergy/detail.php?id=67344",
+      "title": "Fossil generation could rise with faster-than-expected growth in data center power demand",
+      "publisher": "U.S. Energy Information Administration",
+      "rights": "US-GOV-PUBLIC-DOMAIN",
+      "rightsEvidenceUrl": "https://www.usa.gov/government-copyright",
+      "rightsEvidenceNeedle": "Government work is something created by a U.S. government officer or employee as part of their official duties.",
+      "retrievedAt": "2026-07-22T09:00:00.000Z"
+    },
+    {
+      "id": "ferc-2026-large-load-integration",
+      "url": "https://www.ferc.gov/sites/default/files/2026-06/EL26-70-000.pdf",
+      "title": "Order Instituting Proceeding Under Section 206 of the Federal Power Act: Midcontinent Independent System Operator, Inc.",
+      "publisher": "Federal Energy Regulatory Commission",
+      "rights": "US-GOV-PUBLIC-DOMAIN",
+      "rightsEvidenceUrl": "https://www.usa.gov/government-copyright",
+      "rightsEvidenceNeedle": "Government work is something created by a U.S. government officer or employee as part of their official duties.",
+      "retrievedAt": "2026-07-22T09:00:00.000Z"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "Data-center electricity demand is already large and may grow rapidly, but the size and timing of that growth remain scenario-dependent rather than certain.",
+      "warrants": ["doe-2024-data-center-demand", "eia-2026-high-data-center-demand"],
+      "uncertainty": "National projections combine changing project pipelines, computing efficiency, economic activity, weather and grid-operator forecasts; they do not establish one inevitable local load path."
+    },
+    {
+      "statement": "If large-load growth outruns near-term supply and transmission additions, the physical response can include heavier use of existing gas or coal generation and the economic response can include higher wholesale prices, with substantial regional variation.",
+      "warrants": ["eia-2026-high-data-center-demand"],
+      "uncertainty": "The cited price and generation effects are modeled counterfactuals that hold future generating capacity fixed, not observed bills or a forecast for every utility."
+    },
+    {
+      "statement": "Who bears connection and transmission costs is not determined by electricity physics alone; it is allocated through tariffs, study processes, rate structures, contracts and regulatory decisions.",
+      "warrants": ["doe-2024-data-center-demand", "ferc-2026-large-load-integration"],
+      "uncertainty": "Federal transmission jurisdiction, state retail regulation, local utility ownership and individual contracts divide authority differently across places."
+    },
+    {
+      "statement": "Current federal action treats speed of connection, transparency, reliability and protection against cost shifting as linked design problems rather than separable technical and social questions.",
+      "warrants": ["ferc-2026-large-load-integration"],
+      "uncertainty": "The FERC orders require regional operators to justify or revise rules; their eventual tariff outcomes and local distribution effects were not settled when this packet was prepared."
+    }
+  ],
+  "method": "Compare three current primary U.S. government sources at different layers: national demand estimates, a modeled regional price-and-generation sensitivity, and federal action on large-load interconnection tariffs. Treat quantitative projections as conditional, distinguish wholesale from retail effects, and map physical load, market rules and public authority without treating any agency framing as neutral or complete.",
+  "limitations": [
+    "The packet is U.S.-focused and does not establish how another country's electricity institutions allocate data-center costs.",
+    "It does not inspect a specific utility tariff, local tax agreement, water system, land-use permit or data-center power contract.",
+    "Government sources make institutional choices visible but do not represent every ratepayer, worker, resident, utility, developer or environmental-justice perspective.",
+    "The packet supports an educational relational orientation, not a bill forecast, legal conclusion, engineering study or investment recommendation."
+  ],
+  "correctionIdentity": "urn:emsenn:correction:emsenn0:data-center-grid-costs:v1",
+  "buyerControlsFindings": false
+}

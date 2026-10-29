@@ -1,0 +1,17 @@
+{
+  "name": "Relational Orientation Live Research",
+  "description": "Offers and produces exact source-attested relational research commodities without market-clearing or publication authority.",
+  "supportedInterfaces": [
+    {"url":"${BASE_URL}/a2a/jsonrpc","protocolBinding":"JSONRPC","tenant":"","protocolVersion":"1.0"},
+    {"url":"${BASE_URL}/a2a/rest","protocolBinding":"HTTP+JSON","tenant":"","protocolVersion":"1.0"}
+  ],
+  "provider":{"url":"https://emsenn.net/","organization":"Relational Orientation Research Desk via A2A Services Section"},
+  "version":"1.0.0",
+  "capabilities":{"streaming":false,"pushNotifications":false,"extensions":[],"extendedAgentCard":false},
+  "securitySchemes":{},"securityRequirements":[],"defaultInputModes":["application/rmn+cbor"],"defaultOutputModes":["application/rmn+cbor"],
+  "skills":[
+    {"id":"offer-relational-research","name":"Offer relational research","description":"Returns one exact supply offer for a market-admitted assignment.","tags":["research","offer"],"examples":[],"inputModes":["application/rmn+cbor"],"outputModes":["application/rmn+cbor"],"securityRequirements":[]},
+    {"id":"produce-relational-research","name":"Produce relational research","description":"Produces and returns one source-attested packet for an exact funded award.","tags":["research","attestation"],"examples":[],"inputModes":["application/rmn+cbor"],"outputModes":["application/rmn+cbor"],"securityRequirements":[]}
+  ],
+  "signatures":[]
+}

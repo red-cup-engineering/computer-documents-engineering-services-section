@@ -1,0 +1,33 @@
+[Unit]
+Description=emsWeb relational research offer and packet-production A2A provider
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/emsenn/info/lib/emsenn/services/561-group/services/rsc-quiescent/services/emsweb/services/relational-orientation-research-desk
+ExecStart=/home/emsenn/.config/nvm/versions/node/v24.13.1/bin/node src/serve-live-research-a2a.mjs
+Environment=RELATIONAL_RESEARCH_DATA_ROOT=/home/emsenn/info/lib/emsenn/services/561-group/services/rsc-quiescent/services/emsweb/services/relational-orientation-research-desk/data
+Environment=RELATIONAL_RESEARCH_SETTLEMENT_ACCOUNT=eip155:31337:0xeca54188dbe5a59917a73a8119cef33216a162b5
+Restart=on-failure
+RestartSec=5s
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/emsenn/info/lib/emsenn/services/561-group/services/rsc-quiescent/services/emsweb/services/relational-orientation-research-desk/data
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+LockPersonality=true
+RemoveIPC=true
+CapabilityBoundingSet=
+AmbientCapabilities=
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+SystemCallArchitectures=native
+UMask=0077
+
+[Install]
+WantedBy=default.target

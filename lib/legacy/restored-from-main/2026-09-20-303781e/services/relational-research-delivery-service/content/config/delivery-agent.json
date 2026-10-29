@@ -1,0 +1,20 @@
+{
+  "type": "RelationalResearchProductDeliveryAgentActivation",
+  "status": "active",
+  "desiredState": "enabled-active",
+  "serviceUnit": "emsweb-relational-research-delivery-a2a.service",
+  "host": "127.0.0.1",
+  "port": 18440,
+  "baseUrl": "http://127.0.0.1:18440",
+  "agentCard": "content/agent-cards/research-product-delivery.json",
+  "signingKeyDataPath": "data/credentials/research-product-delivery-agent-card.pkcs8.pem",
+  "publicJwks": "content/agent-cards/research-product-delivery-jwks.json",
+  "signingKid": "relational-orientation-research-desk-delivery-ed25519",
+  "algorithm": "EdDSA",
+  "agentCardIdentity": "ni:///sha-256;AqY2QP5gMozYa96lJiJ9e6R01wKg0q2u8Od5U9p3ccY",
+  "agentCardSignature": "ni:///sha-256;f0Hnv80WJWmHo6EtjQjU3oaCVtRTwzf5kkep8TGNVg0",
+  "boundAt": "2026-07-22T02:10:10.000Z",
+  "timeoutMs": 120000,
+  "customer": "urn:ame:youtube-channel-enterprise",
+  "authorityWithheld": ["ambient-packet-list", "research-production", "notebooklm-transformation", "generation", "publication", "distribution", "customer-write"]
+}

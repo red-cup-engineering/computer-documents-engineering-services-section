@@ -1,0 +1,16 @@
+{
+  "type": "RelationalLiveResearchAgentActivation",
+  "status": "active",
+  "host": "127.0.0.1",
+  "port": 18455,
+  "baseUrl": "http://127.0.0.1:18455",
+  "agentCard": "content/agent-cards/live-research.json",
+  "signingKeyDataPath": "data/credentials/live-research-agent-card.pkcs8.pem",
+  "publicJwks": "content/agent-cards/live-research-jwks.json",
+  "signingKid": "relational-orientation-live-research-ed25519",
+  "algorithm": "EdDSA",
+  "timeoutMs": 300000,
+  "agentCardIdentity": "ni:///sha-256;Y1wPEoeEgGJTIrQS62BSRyWmkTEB0cxdusPOlTdIvjw",
+  "agentCardSignature": "ni:///sha-256;XzOeWBq5yamWdbNBFbwYjYmIXxnwjDWeWIsTDya5Gsk",
+  "boundAt": "2026-07-22T09:21:38.000Z"
+}
