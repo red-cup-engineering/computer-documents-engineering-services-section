@@ -1,0 +1,65 @@
+{
+  "type": "RelationalResearchPlan",
+  "version": 1,
+  "question": "Which relational features of this video's subject and presentation sustained audience attention, and what follow-up explanation would discriminate among plausible causes?",
+  "askMicros": 150000,
+  "accountingUnit": "USD-micros",
+  "citations": [
+    {
+      "id": "youtube-analytics-metrics",
+      "url": "https://developers.google.com/youtube/analytics/metrics",
+      "title": "Metrics — YouTube Analytics and Reporting APIs",
+      "publisher": "Google for Developers",
+      "rights": "CC-BY-4.0",
+      "rightsEvidenceUrl": "https://developers.google.com/terms/site-policies",
+      "rightsEvidenceNeedle": "Creative Commons Attribution 4.0",
+      "retrievedAt": "2026-07-22T12:30:00.000Z"
+    },
+    {
+      "id": "youtube-analytics-dimensions",
+      "url": "https://developers.google.com/youtube/analytics/dimensions",
+      "title": "Dimensions — YouTube Analytics and Reporting APIs",
+      "publisher": "Google for Developers",
+      "rights": "CC-BY-4.0",
+      "rightsEvidenceUrl": "https://developers.google.com/terms/site-policies",
+      "rightsEvidenceNeedle": "Creative Commons Attribution 4.0",
+      "retrievedAt": "2026-07-22T12:30:00.000Z"
+    },
+    {
+      "id": "youtube-analytics-query",
+      "url": "https://developers.google.com/youtube/analytics/reference/reports/query",
+      "title": "Reports: Query — YouTube Analytics and Reporting APIs",
+      "publisher": "Google for Developers",
+      "rights": "CC-BY-4.0",
+      "rightsEvidenceUrl": "https://developers.google.com/terms/site-policies",
+      "rightsEvidenceNeedle": "Creative Commons Attribution 4.0",
+      "retrievedAt": "2026-07-22T12:30:00.000Z"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "Views, estimated minutes watched, average view duration, and average view percentage describe viewing outcomes; none of their definitions identifies whether subject, packaging, distribution, prior familiarity, or viewing context caused the outcome.",
+      "warrants": ["youtube-analytics-metrics"],
+      "uncertainty": "Metric definitions establish what was counted, not the complete platform ranking process, viewer intent, comprehension, or a causal mechanism."
+    },
+    {
+      "statement": "Traffic-source, playback-location, subscription-status, device, and time dimensions can split the same outcome into relationally meaningful contexts, making them useful for testing whether an attention pattern is concentrated in discovery, an existing audience, an external referral, or a particular viewing situation.",
+      "warrants": ["youtube-analytics-dimensions", "youtube-analytics-query"],
+      "uncertainty": "Segment differences remain observational and may reflect audience composition, recommendation exposure, timing, or other unmeasured conditions rather than the named dimension alone."
+    },
+    {
+      "statement": "A bounded follow-up should compare the focal video with several explicitly matched videos, preserve separate video and context dimensions, and predeclare which pattern would count against each hypothesis; this can discriminate among plausible explanations better than one aggregate watch-time rank without pretending to prove causation.",
+      "warrants": ["youtube-analytics-metrics", "youtube-analytics-dimensions", "youtube-analytics-query"],
+      "uncertainty": "Matched observational comparison reduces some ambiguity but cannot isolate a packaging or subject effect as cleanly as a valid concurrent intervention, and small channels may lack enough observations for active segment estimates."
+    }
+  ],
+  "method": "Treat the curiosity candidate only as a reason to investigate. Map each proposed cause to an observable contrast available in YouTube Analytics: subject to matched-topic videos, packaging to otherwise comparable releases, distribution to traffic-source and playback-location splits, familiarity to subscription status, and viewing context to time and device. Require multiple comparison videos and state in advance what result would weaken each hypothesis. Keep platform measurements outside the claim-warrant layer except as future test observations.",
+  "limitations": [
+    "The plan does not receive raw analytics rows or identify the focal video's title, transcript, thumbnail, traffic mix, or audience segments.",
+    "YouTube Analytics exposes platform-defined measurements and dimensions, not the complete recommendation system or private viewer motives.",
+    "A small number of views may make subgroup comparisons unstable or unavailable because of privacy and reporting thresholds.",
+    "The packet supports a research design and warranted interpretation boundary; it does not establish which feature caused the already-observed attention."
+  ],
+  "correctionIdentity": "urn:emsenn:correction:emsenn0:youtube-attention-discrimination:v1",
+  "buyerControlsFindings": false
+}

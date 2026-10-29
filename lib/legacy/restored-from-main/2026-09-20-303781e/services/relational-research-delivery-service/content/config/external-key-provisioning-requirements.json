@@ -1,0 +1,17 @@
+{
+  "type": "ExternalCredentialProvisioningRequirement",
+  "version": 1,
+  "status": "external-secret-required",
+  "credentials": [
+    {
+      "purpose": "live-research-agent-card-signing",
+      "runtimePath": "data/credentials/live-research-agent-card.pkcs8.pem",
+      "format": "PKCS#8 PEM"
+    },
+    {
+      "purpose": "research-product-delivery-agent-card-signing",
+      "runtimePath": "data/credentials/research-product-delivery-agent-card.pkcs8.pem",
+      "format": "PKCS#8 PEM"
+    }
+  ]
+}

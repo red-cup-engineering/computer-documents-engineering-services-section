@@ -1,0 +1,28 @@
+[project]
+name = "research-math-tools"
+version = "0.1.0"
+description = "Tooling for frontmatter-markdown mathematical research libraries."
+requires-python = ">=3.11"
+dependencies = [
+    "research-corpus",
+    "research-dagger",
+    "program-validator",
+    "program-planner",
+    "program-auditor",
+    "monograph-composer",
+]
+
+[tool.uv.sources]
+research-corpus = { workspace = true }
+research-dagger = { workspace = true }
+program-validator = { workspace = true }
+program-planner = { workspace = true }
+program-auditor = { workspace = true }
+monograph-composer = { workspace = true }
+research-citations = { path = "../citations/research-citations", editable = true }
+
+[tool.uv.workspace]
+members = [
+    "research-corpus", "research-dagger", "program-validator", "program-planner",
+    "program-auditor", "monograph-composer",
+]

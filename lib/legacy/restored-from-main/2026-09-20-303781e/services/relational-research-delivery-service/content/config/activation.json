@@ -1,0 +1,20 @@
+{
+  "status": "refused-until-signed-supply-offer-development-settlement-and-research-draft",
+  "dryPacketAdmission": "granted-for-explicit-test-contracts",
+  "liveResearch": "refused",
+  "settledAwardDelivery": "active-signed-read-only",
+  "sourceEvidenceAttestation": "active-signed-bounded-observation",
+  "leaderInputsStillRequired": [],
+  "remainingActivationWork": ["activate the desk's signed exact research-supply-offer face", "receive one exact development-chain x402-funded award", "produce one independent source-attested research draft", "keep correction notifications inside the awarded reuse grant"],
+  "evidence": {
+    "sovereignSettlementAccount": "eip155:31337:0xeca54188dbe5a59917a73a8119cef33216a162b5",
+    "accountBinding": "content/evm/accounts/eip155-31337.json",
+    "accountDeploymentTransaction": "0x7307b5335e915ce8583902c73e2791b3202f57c531ef5e27c4f6c746bce35d85",
+    "researchMarketBinding": "content/config/research-market-provider.json",
+    "settledAwardDeliveryLaw": "ni:///sha-256;WPZuOUwiR9VUT_ZPZJvtcidIjbYQfwvNfdxOI_feII4",
+    "sourceEvidenceBinding": "content/config/source-evidence-provider.json",
+    "sourceEvidenceLaw": "ni:///sha-256;vMtzgNbzi8nRgFXofg-MxVK81NmPd-5r1FF_GHEy5kk",
+    "packetAdmissionLaw": "ni:///sha-256;PriRANPt3xCt3Ul-4vB_rxRoyfYLCf_1WRMqq5wFfpM"
+  },
+  "neverEvidence": "A packet is not channel publication, Koios admission, NotebookLM transformation, distribution, or permission beyond its exact reuse grant."
+}

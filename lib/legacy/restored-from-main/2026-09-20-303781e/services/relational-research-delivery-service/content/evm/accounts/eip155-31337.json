@@ -1,0 +1,11 @@
+{
+  "enterprise": {
+    "urn": "urn:ame:relational-orientation-research-desk"
+  },
+  "account": {
+    "caip10": "eip155:31337:0xeca54188dbe5a59917a73a8119cef33216a162b5"
+  },
+  "deployment": {
+    "transaction": "0x7307b5335e915ce8583902c73e2791b3202f57c531ef5e27c4f6c746bce35d85"
+  }
+}
