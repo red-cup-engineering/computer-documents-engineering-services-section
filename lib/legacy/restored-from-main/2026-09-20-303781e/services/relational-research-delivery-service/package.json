@@ -1,0 +1,40 @@
+{
+  "name": "@lenticule-science/relational-orientation-research-desk",
+  "version": "0.2.0",
+  "private": false,
+  "type": "module",
+  "description": "Source-grounded reusable relational research packets for exact settled buyers and uses.",
+  "files": [
+    "content/",
+    "src/"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "check": "node --check src/desk.mjs && node --check src/delivery.mjs && node --check src/research-market-client.mjs && node --check src/source-evidence-client.mjs && node --check src/assignment-admission-client.mjs && node --check src/live-research.mjs && node --check src/a2a-live-research-executor.mjs && node --check src/serve-live-research-a2a.mjs && node --check src/a2a-delivery-executor.mjs && node --check src/serve-delivery-a2a.mjs && node --check test/desk.test.mjs && node --check test/delivery.test.mjs && node --check test/research-market-client.test.mjs && node --check test/source-evidence-client.test.mjs",
+    "serve-research-delivery": "node src/serve-delivery-a2a.mjs",
+    "serve-live-research": "node src/serve-live-research-a2a.mjs",
+    "test": "node --test test/desk.test.mjs test/delivery.test.mjs test/research-market-client.test.mjs test/source-evidence-client.test.mjs"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "dependencies": {
+    "@red-cup-engineering/a2a-agent-card-discovery-service": "0.5.0",
+    "@red-cup-engineering/a2a-agent-card-key-service": "0.4.0",
+    "@red-cup-engineering/a2a-contracted-agent-service": "0.7.0",
+    "@red-cup-engineering/a2a-rmn-part-service": "0.2.0",
+    "@red-cup-engineering/a2a-rmn-task-client-service": "0.5.0",
+    "@red-cup-engineering/computer-data-engine": "0.10.0",
+    "@red-cup-engineering/javascript-file-main-guard-service": "0.1.3",
+    "@red-cup-engineering/semantic-content-identify-service": "0.2.7",
+    "@red-cup-engineering/semantic-record-journal-service": "0.4.0"
+  },
+  "keywords": [
+    "sovereign-state-enterprise",
+    "research",
+    "relational"
+  ],
+  "license": "UNLICENSED"
+}

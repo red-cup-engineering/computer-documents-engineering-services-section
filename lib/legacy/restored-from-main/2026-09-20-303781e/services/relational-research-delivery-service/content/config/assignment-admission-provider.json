@@ -1,0 +1,9 @@
+{
+  "type": "ResearchAssignmentAdmissionProviderBinding",
+  "status": "active",
+  "customer": "urn:ame:relational-orientation-research-desk",
+  "provider": "urn:ame:curiosity-research-market-enterprise",
+  "agentUrl": "http://127.0.0.1:18444/.well-known/agent-card.json",
+  "agentCardIdentity": "ni:///sha-256;ttUz0Wb1om7XRGfcS4JHkF_bAfRN3WGklUx4cvrY-18",
+  "purpose": "research-supply-offer-formation"
+}

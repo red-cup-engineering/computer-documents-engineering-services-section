@@ -1,0 +1,13 @@
+{
+  "type": "SourceEvidenceAttestationProviderBinding",
+  "status": "active",
+  "customer": "urn:ame:relational-orientation-research-desk",
+  "provider": "urn:ame:source-evidence-attestation-enterprise",
+  "agentUrl": "http://127.0.0.1:18442/.well-known/agent-card.json",
+  "agentCardIdentity": "ni:///sha-256;hcpkJm-LgOM2CgI6giEi8y2-7x-Mtcxsb_lsWDY6ff4",
+  "agentCardSignature": "ni:///sha-256;pJGckCoN0cc_CUUfohYHaOCBeYtVXgS9Wv2dQlton6s",
+  "contract": "ni:///sha-256;vMtzgNbzi8nRgFXofg-MxVK81NmPd-5r1FF_GHEy5kk",
+  "claimBoundary": "observed-carriers-and-declared-rights-evidence-not-legal-sufficiency",
+  "authorityWithheld": ["ambient-crawl", "research-findings", "source-truth", "legal-advice", "license-adjudication", "transformation", "distribution", "publication", "provider-write"],
+  "boundAt": "2026-07-22T02:31:24.000Z"
+}

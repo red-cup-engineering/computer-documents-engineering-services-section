@@ -1,0 +1,12 @@
+{
+  "keys": [
+    {
+      "crv": "Ed25519",
+      "x": "sa52eiFlbYvImodVq0j-uHQkoUA3mst5Aa6UN9lkmDw",
+      "kty": "OKP",
+      "use": "sig",
+      "alg": "EdDSA",
+      "kid": "relational-orientation-research-desk-delivery-ed25519"
+    }
+  ]
+}
