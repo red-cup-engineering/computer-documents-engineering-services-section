@@ -1,0 +1,23 @@
+name: Source-owned document editorial engineering
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-and-packed-consumer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Receive exact source
+        uses: actions/checkout@v4
+      - name: Node 22.16+ runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify syntax and package surface
+        run: npm run check
+      - name: Run native and offline packed consumer tests
+        run: npm test

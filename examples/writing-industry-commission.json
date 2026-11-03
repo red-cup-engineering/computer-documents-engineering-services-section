@@ -1,0 +1,142 @@
+{
+  "id": "editorial-landscape",
+  "revision": "vendor-pages-reviewed-2026-10-22",
+  "title": "What a Full Writing-Improvement System Must Do",
+  "purpose": "Document the concrete competitor capability baseline without asserting unmeasured superiority.",
+  "audience": "561 Group product and editorial engineers",
+  "genre": "competitive-analysis",
+  "locale": "en-US",
+  "profileId": "technical-editorial",
+  "sources": [
+    {
+      "id": "grammarly",
+      "title": "Grammarly Docs support",
+      "locator": "https://support.grammarly.com/hc/en-us/articles/38552281546765-Docs-Grammarly-s-new-AI-writing-surface",
+      "revision": "checked-2026-10-22"
+    },
+    {
+      "id": "writer",
+      "title": "WRITER enterprise platform documentation",
+      "locator": "https://support.writer.com/articles/3099016123-what-is-writer",
+      "revision": "checked-2026-10-22"
+    },
+    {
+      "id": "prowritingaid",
+      "title": "ProWritingAid features",
+      "locator": "https://prowritingaid.com/features",
+      "revision": "checked-2026-10-22"
+    },
+    {
+      "id": "languagetool",
+      "title": "LanguageTool proofreading API",
+      "locator": "https://languagetool.org/lp/api",
+      "revision": "checked-2026-10-22"
+    },
+    {
+      "id": "markup",
+      "title": "Markup AI / Acrolinx quality governance",
+      "locator": "https://www.acrolinx.com/",
+      "revision": "checked-2026-10-22"
+    },
+    {
+      "id": "vale",
+      "title": "Vale prose lint documentation",
+      "locator": "https://docs.vale.sh/",
+      "revision": "checked-2026-10-22"
+    }
+  ],
+  "claims": [
+    {
+      "id": "grammarly-docs",
+      "text": "Grammarly Docs combines brainstorming, composition, grammatical review, and revision tools in an editor with multiple writing agents.",
+      "sourceIds": [
+        "grammarly"
+      ],
+      "status": "vendor-reported"
+    },
+    {
+      "id": "grammarly-citations",
+      "text": "Grammarly describes a Citation Finder that searches for sources supporting or disputing passages.",
+      "sourceIds": [
+        "grammarly"
+      ],
+      "status": "vendor-reported"
+    },
+    {
+      "id": "writer-workflows",
+      "text": "WRITER describes agents that break a business goal into steps, retrieve organizational context, and create finished deliverables.",
+      "sourceIds": [
+        "writer"
+      ],
+      "status": "vendor-reported"
+    },
+    {
+      "id": "prowritingaid-planning",
+      "text": "ProWritingAid advertises Story Canvas, plot analysis, writing sessions, line editing, and manuscript critique as connected writing stages.",
+      "sourceIds": [
+        "prowritingaid"
+      ],
+      "status": "vendor-reported"
+    },
+    {
+      "id": "languagetool-api",
+      "text": "LanguageTool offers JSON-oriented spelling and grammar checking with contextual rules and multiple languages.",
+      "sourceIds": [
+        "languagetool"
+      ],
+      "status": "vendor-reported"
+    },
+    {
+      "id": "vale-lint",
+      "text": "Vale is a configurable markup-aware style linter designed for editor and CI workflows, not a comprehensive grammar teacher.",
+      "sourceIds": [
+        "vale"
+      ],
+      "status": "vendor-reported"
+    },
+    {
+      "id": "markup-governance",
+      "text": "Markup AI, formerly Acrolinx, advertises content governance that checks brand consistency, quality, and citability before release.",
+      "sourceIds": [
+        "markup"
+      ],
+      "status": "vendor-reported"
+    }
+  ],
+  "sections": [
+    {
+      "id": "production",
+      "heading": "Planning and production",
+      "aim": "Identify competitor outlining, drafting and goal decomposition features",
+      "claimIds": [
+        "grammarly-docs",
+        "writer-workflows",
+        "prowritingaid-planning"
+      ],
+      "minWords": 35,
+      "maxWords": 200
+    },
+    {
+      "id": "analysis",
+      "heading": "Grammar and evidence analysis",
+      "aim": "Describe source-level proofreading and citation checking",
+      "claimIds": [
+        "grammarly-citations",
+        "languagetool-api",
+        "vale-lint"
+      ],
+      "minWords": 30,
+      "maxWords": 180
+    },
+    {
+      "id": "governance",
+      "heading": "Editorial governance",
+      "aim": "Distinguish writing improvement and independently accepted release checks",
+      "claimIds": [
+        "markup-governance"
+      ],
+      "minWords": 10,
+      "maxWords": 120
+    }
+  ]
+}

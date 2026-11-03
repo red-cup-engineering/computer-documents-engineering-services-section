@@ -1,0 +1,148 @@
+{
+  "schema": "561-writing-competitive-benchmark/v1",
+  "edition": "2026-10-22",
+  "ownerRepository": "red-cup-engineering/computer-documents-engineering-services-section",
+  "ownerPackage": "@red-cup-engineering/computer-documents-engineering-services-section",
+  "scope": "Document-level planning, drafting, structural review, revision staging, and multi-document operations; grammar/English semantic ownership stays in English/PTGAE services; publication acceptance stays with receiving publisher.",
+  "comparators": [
+    {
+      "id": "grammarly-docs",
+      "brand": "Grammarly",
+      "product": "Docs with AI writing agents",
+      "source": "https://support.grammarly.com/hc/en-us/articles/38552281546765-Docs-Grammarly-s-new-AI-writing-surface",
+      "observedCapabilities": [
+        "brainstorm",
+        "compose",
+        "rewrite",
+        "review",
+        "citation-finder",
+        "reader-reactions",
+        "authorship-history"
+      ],
+      "ourInterface": "editorial-production",
+      "status": "external-capability-observed-no-comparative-score"
+    },
+    {
+      "id": "writer-enterprise",
+      "brand": "WRITER",
+      "product": "Enterprise agentic work",
+      "source": "https://support.writer.com/articles/3099016123-what-is-writer",
+      "observedCapabilities": [
+        "decompose-goals",
+        "retrieve-organization-knowledge",
+        "execute-repeatable-workflows",
+        "produce-documents",
+        "apply-brand-standards"
+      ],
+      "ourInterface": "editorial-production",
+      "status": "external-capability-observed-no-comparative-score"
+    },
+    {
+      "id": "prowritingaid",
+      "brand": "ProWritingAid",
+      "product": "Planning, manuscript critique, writing reports",
+      "source": "https://prowritingaid.com/features",
+      "observedCapabilities": [
+        "story-canvas",
+        "plot-analysis",
+        "writing-sprints",
+        "sentence-level-rewrite",
+        "chapter-critique",
+        "manuscript-analysis",
+        "pacing",
+        "marketability"
+      ],
+      "ourInterface": "editorial-outline+editorial-production",
+      "status": "external-capability-observed-no-comparative-score"
+    },
+    {
+      "id": "quillbot-flow",
+      "brand": "QuillBot",
+      "product": "Flow co-writing editor",
+      "source": "https://quillbot.com/flow",
+      "observedCapabilities": [
+        "research",
+        "notes",
+        "summarization",
+        "citing-sources",
+        "write-assist",
+        "paraphrase",
+        "grammar",
+        "writing-analytics"
+      ],
+      "ourInterface": "editorial-production",
+      "status": "external-capability-observed-no-comparative-score"
+    },
+    {
+      "id": "markup-ai",
+      "brand": "Markup AI (formerly Acrolinx)",
+      "product": "Content Guardian Agents and automated content governance",
+      "source": "https://www.acrolinx.com/",
+      "observedCapabilities": [
+        "brand-governance",
+        "quality-gating",
+        "citation-readiness-check",
+        "multi-author-editorial",
+        "repository-integrations",
+        "lifecycle-analytics"
+      ],
+      "ourInterface": "editorial-production-quality-gates",
+      "status": "external-capability-observed-no-comparative-score"
+    }
+  ],
+  "comparisonTasks": [
+    {
+      "id": "outline-placement",
+      "task": "Classify claim-bearing source fragments into a human-authored document plan or abstain",
+      "meetMetric": "blind human-labeled top-1 accuracy, including abstentions",
+      "beatCriterion": "Higher accuracy at equal/lower false assignment rate than a measured vendor baseline; no vendor baseline yet."
+    },
+    {
+      "id": "grounded-draft",
+      "task": "Produce accurate multi-section drafts with exact source references",
+      "meetMetric": "unsupported claims, missing citations, material source omission per 100 claims",
+      "beatCriterion": "Lower critical error rate than a measured vendor baseline with comparable task inputs."
+    },
+    {
+      "id": "structural-review",
+      "task": "Find true repetition, omissions, reading issues and editorial gaps",
+      "meetMetric": "precision and recall on independently marked examples",
+      "beatCriterion": "Better F1 and no increase in harmful false positives."
+    },
+    {
+      "id": "revision",
+      "task": "Rewrite only admitted spans, preserve evidence and original voice",
+      "meetMetric": "semantic drift, source protection violations, human acceptance and refusal accuracy",
+      "beatCriterion": "Lower harmful-change rate with higher useful accepted-edit rate than measured baseline."
+    },
+    {
+      "id": "throughput",
+      "task": "Batch thousands of sections with deterministic identity and bounded work",
+      "meetMetric": "throughput per compute dollar, peak memory, p95 latency, reproducibility",
+      "beatCriterion": "Meet SLA and beat an actually observed comparable throughput/cost baseline."
+    },
+    {
+      "id": "governance",
+      "task": "Stop unauthorized edits/publication and detect stale source revisions",
+      "meetMetric": "all negative controls refused, independent reviewer/audit readback",
+      "beatCriterion": "No unapproved side effects across a qualified red-team corpus."
+    }
+  ],
+  "localImplementation": {
+    "exports": [
+      "./editorial-outline",
+      "./editorial-production",
+      "./editorial-cli"
+    ],
+    "currentStage": "development-candidate-source-tested-not-released",
+    "proofBoundary": "Deterministic lexical claim placement, original-claim rendering, bounded section concurrency, structural review, exact SHA and no-overwrite CLI. It is not generative semantic understanding or product parity.",
+    "notYetImplemented": [
+      "live word-processor integration",
+      "contextual generative revision provider",
+      "human study",
+      "comparison vendor run",
+      "production release",
+      "global language conformance"
+    ]
+  }
+}
