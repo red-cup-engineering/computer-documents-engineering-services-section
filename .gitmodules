@@ -14,10 +14,6 @@
 	path = services/email-newsletter-engineering-services-section
 	url = https://github.com/red-cup-engineering/email-newsletter-engineering-services-section.git
 	branch = main
-[submodule "services/ebook-engineering-services-section"]
-	path = services/ebook-engineering-services-section
-	url = https://github.com/red-cup-engineering/ebook-engineering-services-section.git
-	branch = main
 [submodule "services/computer-article-engineering-services-section"]
 	path = services/computer-article-engineering-services-section
 	url = https://github.com/red-cup-engineering/computer-article-engineering-services-section.git
