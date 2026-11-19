@@ -34,7 +34,7 @@ export async function runEditorialCli({input,output,autoOutline=false}={}){
 }
 const isMain=!!process.argv[1] && pathToFileURL(resolve(process.argv[1])).href===import.meta.url;
 if(isMain){
-  try{const receipt=await runEditorialCli(cliArguments(process.argv.slice(2)));
-    process.stdout.write(JSON.stringify(receipt)+'\n');if(receipt.issues)process.exitCode=1;
+  try{const record=await runEditorialCli(cliArguments(process.argv.slice(2)));
+    process.stdout.write(JSON.stringify(record)+'\n');if(record.issues)process.exitCode=1;
   }catch(e){process.stderr.write((e?.message??String(e))+'\n');process.exitCode=2;}
 }
