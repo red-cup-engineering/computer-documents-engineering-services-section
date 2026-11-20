@@ -83,7 +83,7 @@ export function planEditorialCommission(data) {
 }
 
 /** Offline first draft which never paraphrases or invents source assertions. */
-export function draftFromValidatedClaims({section, claims}) {
+export function draftFromAdmittedClaims({section, claims}) {
   const claimMap = new Map(claims.map(c=>[c.id,c]));
   const paragraphs = section.claimIds.map(id => {
     const c = claimMap.get(id);
@@ -137,7 +137,7 @@ async function mapBounded(items, limit, fn) {
  * A draft provider is authorized only to return candidate prose, never actions.
  * No network/LLM call is made except inside an explicitly supplied provider.
  */
-export async function runEditorialProduction({commission, draftSection=draftFromValidatedClaims,
+export async function runEditorialProduction({commission, draftSection=draftFromAdmittedClaims,
   reviewSection=reviewEditorialSection, concurrency=4, previousSections=[], writerEdition='source-grounded-verbatim/1'}={}) {
   if(!safeInt(concurrency,1,16))throw new RangeError('concurrency must be 1..16');
   safeText(writerEdition,'writerEdition',200);
