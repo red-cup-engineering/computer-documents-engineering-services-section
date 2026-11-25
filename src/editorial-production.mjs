@@ -1,4 +1,4 @@
-import { sha256Hex } from "@red-cup-engineering/semiotic-content-address-system";
+import { sha256Hex, semanticHex } from "@red-cup-engineering/semiotic-content-address-system";
 // Document-layer planning, source-grounded drafting, reviewing and draft receipt.
 // Factual truth, author approval, and publication are owned by independent receivers.
 
@@ -68,13 +68,13 @@ function normalize(data) {
 export function planEditorialCommission(data) {
   const commission = normalize(data);
   const claims = new Map(commission.claims.map(c=>[c.id,c]));
-  const inputSha256 = sha256Hex(JSON.stringify(commission));
+  const inputSha256 = semanticHex(commission);
   const sectionPlans = commission.sections.map((section,i) => {
     const citedSources = unique(section.claimIds.flatMap(id=>claims.get(id).sourceIds));
-    const sectionInputSha256 = sha256Hex(JSON.stringify([commission.locale, commission.genre,
+    const sectionInputSha256 = semanticHex([commission.locale, commission.genre,
       commission.audience, commission.purpose, commission.profileId, section,
       section.claimIds.map(id=>claims.get(id)),
-      citedSources.map(id=>commission.sources.find(source=>source.id===id))]));
+      citedSources.map(id=>commission.sources.find(source=>source.id===id))]);
     return {...section, index:i,sourceIds:citedSources,inputSha256:sectionInputSha256};
   });
   return {kind:'documents.editorial-plan.v1', commission, inputSha256, sections:sectionPlans,
@@ -146,7 +146,7 @@ export async function runEditorialProduction({commission, draftSection=draftFrom
   const previous=new Map();
   for(const r of previousSections){if(r?.sectionId && !previous.has(r.sectionId))previous.set(r.sectionId,r);}
   const sections=await mapBounded(plan.sections,concurrency,async section => {
-    const inputSha256=sha256Hex(JSON.stringify([section.inputSha256,writerEdition]));
+    const inputSha256=semanticHex([section.inputSha256,writerEdition]);
     const cached=previous.get(section.id);
     let candidate;
     let reused=false;

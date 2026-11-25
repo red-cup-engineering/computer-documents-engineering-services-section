@@ -1,7 +1,7 @@
 // Document receiving for an independently reviewed edit provider (e.g. the
 // original PTGAE signed editor). The source producer and document review remain
 // authoritative for document assembly; this module never verifies signatures.
-import { sha256Hex } from "@red-cup-engineering/semiotic-content-address-system";
+import { sha256Hex, semanticHex } from "@red-cup-engineering/semiotic-content-address-system";
 import {planEditorialCommission,runEditorialProduction} from './editorial-production.mjs';
 const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
 const good=x=>typeof x==='string'&&!!x.trim();
@@ -40,7 +40,7 @@ export async function stageReviewedManuscript({commission,original,
     writerEdition:'document-revision/1:'+original.writerEdition,
     async draftSection({section,inputSha256}){
       const prior=old.get(section.id);
-      const previousInput=sha256Hex(JSON.stringify([section.inputSha256,original.writerEdition]));
+      const previousInput=semanticHex([section.inputSha256,original.writerEdition]);
       if(!prior||prior.inputSha256!==previousInput||prior.heading!==section.heading)
         throw new RangeError('section source revision conflicts with original plan');
       const source={sectionId:section.id,sourceSha256:prior.textSha256,
