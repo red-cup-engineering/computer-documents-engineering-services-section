@@ -1,9 +1,8 @@
 // Document receiving for an independently reviewed edit provider (e.g. the
 // original PTGAE signed editor). The source producer and document review remain
 // authoritative for document assembly; this module never verifies signatures.
-import {createHash} from 'node:crypto';
+import { sha256Hex } from "@red-cup-engineering/semiotic-content-address-system";
 import {planEditorialCommission,runEditorialProduction} from './editorial-production.mjs';
-const sha256 = text => createHash('sha256').update(text,'utf8').digest('hex');
 const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
 const good=x=>typeof x==='string'&&!!x.trim();
 const citations=text=>[...text.matchAll(/\[source:([a-z][a-z0-9-]{0,79})\]/gu)].map(x=>x[1]);
@@ -25,14 +24,14 @@ export async function stageReviewedManuscript({commission,original,
   if(!original||original.kind!=='documents.editorial-production-receipt.v1'
     || original.inputSha256!==plan.inputSha256
     || !original.manuscript||!good(original.manuscript.text)
-    ||original.manuscript.sha256!==sha256(original.manuscript.text)
+    ||original.manuscript.sha256!==sha256Hex(original.manuscript.text)
     ||!Array.isArray(original.sections)||original.sections.length!==plan.sections.length)
     throw new RangeError('original document receipt is stale or malformed');
   if(!good(original.writerEdition))throw new RangeError('missing original writer edition');
   const old=new Map();
   for(const prior of original.sections){
     if(!good(prior?.sectionId)||old.has(prior.sectionId)||typeof prior.text!=='string'
-      ||prior.textSha256!==sha256(prior.text)||!Array.isArray(prior.usedClaimIds)
+      ||prior.textSha256!==sha256Hex(prior.text)||!Array.isArray(prior.usedClaimIds)
       ||!Array.isArray(prior.citedSourceIds))throw new RangeError('invalid prior section source');
     old.set(prior.sectionId,prior);
   }
@@ -41,7 +40,7 @@ export async function stageReviewedManuscript({commission,original,
     writerEdition:'document-revision/1:'+original.writerEdition,
     async draftSection({section,inputSha256}){
       const prior=old.get(section.id);
-      const previousInput=sha256(JSON.stringify([section.inputSha256,original.writerEdition]));
+      const previousInput=sha256Hex(JSON.stringify([section.inputSha256,original.writerEdition]));
       if(!prior||prior.inputSha256!==previousInput||prior.heading!==section.heading)
         throw new RangeError('section source revision conflicts with original plan');
       const source={sectionId:section.id,sourceSha256:prior.textSha256,
@@ -56,7 +55,7 @@ export async function stageReviewedManuscript({commission,original,
       }
       if(!stage||stage.sectionId!==section.id||stage.sourceSha256!==prior.textSha256
         ||typeof stage.candidateText!=='string'||!stage.candidateText.trim()
-        ||stage.candidateSha256!==sha256(stage.candidateText)
+        ||stage.candidateSha256!==sha256Hex(stage.candidateText)
         ||stage.candidateText===prior.text||!Array.isArray(stage.acceptedEditIds)
         ||stage.acceptedEditIds.length===0||new Set(stage.acceptedEditIds).size!==stage.acceptedEditIds.length
         ||stage.acceptedEditIds.some(id=>!good(id)))

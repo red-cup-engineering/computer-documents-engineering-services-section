@@ -1,8 +1,7 @@
+import { sha256Hex } from "@red-cup-engineering/semiotic-content-address-system";
 // Document-layer planning, source-grounded drafting, reviewing and draft receipt.
 // Factual truth, author approval, and publication are owned by independent receivers.
-import { createHash } from 'node:crypto';
 
-const hash = value => createHash('sha256').update(value, 'utf8').digest('hex');
 const name = value => typeof value === 'string' && /^[a-z][a-z0-9-]{0,79}$/.test(value);
 const str = value => typeof value === 'string' && !!value.trim();
 const own = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
@@ -69,10 +68,10 @@ function normalize(data) {
 export function planEditorialCommission(data) {
   const commission = normalize(data);
   const claims = new Map(commission.claims.map(c=>[c.id,c]));
-  const inputSha256 = hash(JSON.stringify(commission));
+  const inputSha256 = sha256Hex(JSON.stringify(commission));
   const sectionPlans = commission.sections.map((section,i) => {
     const citedSources = unique(section.claimIds.flatMap(id=>claims.get(id).sourceIds));
-    const sectionInputSha256 = hash(JSON.stringify([commission.locale, commission.genre,
+    const sectionInputSha256 = sha256Hex(JSON.stringify([commission.locale, commission.genre,
       commission.audience, commission.purpose, commission.profileId, section,
       section.claimIds.map(id=>claims.get(id)),
       citedSources.map(id=>commission.sources.find(source=>source.id===id))]));
@@ -147,11 +146,11 @@ export async function runEditorialProduction({commission, draftSection=draftFrom
   const previous=new Map();
   for(const r of previousSections){if(r?.sectionId && !previous.has(r.sectionId))previous.set(r.sectionId,r);}
   const sections=await mapBounded(plan.sections,concurrency,async section => {
-    const inputSha256=hash(JSON.stringify([section.inputSha256,writerEdition]));
+    const inputSha256=sha256Hex(JSON.stringify([section.inputSha256,writerEdition]));
     const cached=previous.get(section.id);
     let candidate;
     let reused=false;
-    if(cached?.inputSha256===inputSha256 && cached?.textSha256 === hash(cached.text??'') &&
+    if(cached?.inputSha256===inputSha256 && cached?.textSha256 === sha256Hex(cached.text??'') &&
        Array.isArray(cached.usedClaimIds) && str(cached.text)) {
       candidate={text:cached.text,usedClaimIds:cached.usedClaimIds,citedSourceIds:cached.citedSourceIds,
         provider:cached.provider};reused=true;
@@ -165,7 +164,7 @@ export async function runEditorialProduction({commission, draftSection=draftFrom
     if(!Array.isArray(candidate.usedClaimIds)||!Array.isArray(candidate.citedSourceIds))throw new TypeError('candidate needs declared claim and source IDs');
     const review=await reviewSection({section,sectionDraft:candidate,sources:plan.commission.sources,claims:plan.commission.claims});
     if(!review || !Array.isArray(review.issues))throw new TypeError('reviewer returned an invalid report');
-    return {sectionId:section.id,heading:section.heading,inputSha256,textSha256:hash(candidate.text),
+    return {sectionId:section.id,heading:section.heading,inputSha256,textSha256:sha256Hex(candidate.text),
       text:candidate.text,usedClaimIds:candidate.usedClaimIds,citedSourceIds:candidate.citedSourceIds,
       provider:candidate.provider??{id:'caller-owned',edition:writerEdition},review,reused,
       editorialAuthority:'none',publicationAuthority:'none'};
@@ -179,7 +178,7 @@ export async function runEditorialProduction({commission, draftSection=draftFrom
   for(const id of unexpected)defects.push({sectionId:null,code:'unknown-bibliography-source',severity:'error',sourceId:id});
   return {kind:'documents.editorial-production-receipt.v1',commissionId:plan.commission.id,
     commissionRevision:plan.commission.revision,inputSha256:plan.inputSha256,writerEdition,sections,
-    manuscript:{text:manuscript,sha256:hash(manuscript),contentType:'text/markdown'},bibliography,
+    manuscript:{text:manuscript,sha256:sha256Hex(manuscript),contentType:'text/markdown'},bibliography,
     review:{issues:defects,structurallyReviewable:defects.every(x=>x.severity!=='error'),
       factualAccuracyEstablished:false,grammarCorrectnessEstablished:false,authorApproved:false},
     sourceCustodyVerified:false,publicationAuthority:'none',executableEffects:[]};
